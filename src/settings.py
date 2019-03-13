@@ -8,7 +8,7 @@ class SettingsWindow(wx.Frame):
 
     def __init__(self, parent):
         wx.Frame.__init__(self, None, title=self.Name)
-        self.SetMinSize((400, 238))
+        self.SetMinSize((290, 242))
 
         self.Settings = LoadSettings()
 
@@ -34,6 +34,7 @@ class SettingsWindow(wx.Frame):
     def SaveSettings(self, event):
         SaveSettings(self.Settings)
         wx.MessageBox('Saved Settings')
+        print(self.GetSize())
         self.Close()
         
     def SelectFolderDialog(self, event):

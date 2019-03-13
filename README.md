@@ -6,11 +6,17 @@ Simple project manager for a systematic way to start projects
 
 Simply clone the repository and run:
 
-`python -m src`
+```
+python -m src
+```
 
 ## About:
 
 Written with Python using the wxPython api
+
+### Requirements:
+
+- wxpython 4.0.4
 
 ## Features:
 

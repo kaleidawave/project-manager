@@ -1,9 +1,10 @@
 import os
 import json
+import subprocess
 import src.constants as CONSTANTS
 from src.settings import LoadSettings
 
-def CreateProject(name):
+def CreateProject(name, git):
     """ Creates a new project """
     settings = LoadSettings()
     directory = os.path.join(settings['project-dir'], name)
@@ -12,6 +13,9 @@ def CreateProject(name):
         os.makedirs(directory)
         with open(os.path.join(directory, 'README.md'), 'w') as ReadmeFile:
             ReadmeFile.write('# {}'.format(name))  
+
+    if git:
+        CreateGitRepo(directory)
 
     projects = LoadProjects()
     with open('track.json', 'w') as TrackFile:
@@ -30,3 +34,7 @@ def LoadProjects():
             return json.load(TrackFile)
     except FileNotFoundError as identifier:
         return CONSTANTS.DEFAULT_TRACK
+
+def CreateGitRepo(directory):
+    git = subprocess.Popen(['git', 'init'], cwd=directory)
+    git.wait()
